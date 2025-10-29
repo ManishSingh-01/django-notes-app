@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SONAR_HOME = tool "Sonar"
+        SONAR_HOME = tool "sonarqube"
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('Sonar') {
+                withSonarQubeEnv('sonarqube') {
                     sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=my-project -Dsonar.projectKey=my-project"
                 }
             }
